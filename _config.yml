@@ -2,8 +2,8 @@
 
 title: "Kang ByeongKyu"
 description: "반갑습니다!"
-logo: # 120x120 px default image used for Twitter summary card
-teaser: # 400x250 px default teaser image used in image archive grid
+logo: workspace.png
+teaser: yBigTa.gif
 locale: en
 url:
 feed:

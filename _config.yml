@@ -5,7 +5,7 @@ description: "반갑습니다!"
 logo: workspace.gif
 teaser: yBigTa.gif
 locale: en
-url:
+url: https://KangBK0120.github.io/First-GAN
 feed:
   path: atom.xml
 
@@ -32,7 +32,7 @@ owner: KangBK0120
   google:
     ad-client:
     ad-slot:
-  bio:
+  bio: 연세대학교 컴퓨터과학과
   avatar: bio-photo.jpg # 160x160 px image for author byline
   disqus-shortname:
 

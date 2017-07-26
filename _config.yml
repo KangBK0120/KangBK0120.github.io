@@ -2,7 +2,7 @@
 
 title: "Kang ByeongKyu"
 description: "반갑습니다!"
-logo: workspace.png
+logo: workspace.gif
 teaser: yBigTa.gif
 locale: en
 url:
@@ -25,9 +25,9 @@ gems:
 
 
 # Site owner
-owner:
-  name:
-  email:
+owner: KangBK0120
+  name: Kang ByeongKyu
+  email: lejkbk0930@gmail.com
   twitter:
   google:
     ad-client:

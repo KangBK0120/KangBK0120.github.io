@@ -16,6 +16,7 @@ url: # the base hostname & protocol for your site
 #
 timezone:          Asia/Seoul
 markdown:          kramdown
+mathjax: true
 highlighter:       rouge
 excerpt_separator: <!--more-->
 permalink:         /articles/:year-:month/:title
@@ -33,7 +34,7 @@ kramdown:
 ####################################
 #
 owner:
-  name: KangBK
+  name: 강병규
   avatar: yBigTa.gif
   job: "연세대 컴퓨터과학과 | 연세대 빅데이터 학회 yBigTa"
   bio: "반갑습니당"

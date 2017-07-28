@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NIPS 2016 Tutorial: GAN
+title: NIPS 2016 Tutorial GAN
 excerpt: "GAN을 처음으로 제안한 Goodfellow가 2016년 NIPS에서 제안한 팁들을 정리했습니다"
 categories: [GAN]
 comments: true

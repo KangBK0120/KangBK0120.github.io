@@ -1,13 +1,12 @@
 ---
 layout: post
 title: Conditional GAN
-except: "GAN의 변형 중 하나인 Conditional GAN입니다."
+excerpt: "GAN의 변형 중 하나인 Conditional GAN입니다."
 categories: [GAN]
 comments: true
 use_math: true
 ---
 # Conditional Generative Adversarial Nets
-
 <h6 align="right">강병규</h6>
 
 ## Introduction
@@ -32,4 +31,4 @@ GAN의 generator와 discriminator에 어떤 추가적인 정보 ${y}$만 넣어�
 
 ![cond-gan](https://user-images.githubusercontent.com/25279765/28810813-acb1b642-76c6-11e7-94cc-cf5cdeb579d4.PNG)
 
-generator의 경우 input noise ${p_z(z)}$와 ${y}$가 hidden layer에서 결합하고 discriminator의 경우 ${x}$와 ${y}$가 discriminative function에 입력으로 들어가게 되는 것입니다. 이때 two-player min-max의 목적함수는 $${\min_G \max_D = \mathbb{E}_{x\sim {p_{data}(x)}}[\log(D(x|y))] + \mathbb{E}_{z\sim {p_z(z)}} [log(1-D(G(z|y)))]}$$와 같아집니다. 즉 어떠한 데이터가 ${y}$일 때 가짜인 확률과 진짜인 확률을 추정한다고 생각하면 됩니다.
+generator의 경우 input noise ${p_z(z)}$와 ${y}$가 hidden layer에서 결합하고 discriminator의 경우 ${x}$와 ${y}$가 discriminative function에 입력으로 들어가게 되는 것입니다. 이때 two-player min-max의 목적함수는 $${\min_G \max_D = \mathbb{E}_{x\sim {p_{data}(x)}}[\log(D(x \lvert y))] + \mathbb{E}_{z\sim {p_z(z)}} [log(1-D(G(z \lvert y)))]}$$와 같아집니다. 즉 어떠한 데이터가 ${y}$일 때 가짜인 확률과 진짜인 확률을 추정한다고 생각하면 됩니다.

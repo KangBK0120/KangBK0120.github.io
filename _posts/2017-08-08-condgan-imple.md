@@ -1,12 +1,12 @@
 ---
 layout: post
-title: GAN으로 내 핸드폰 번호 손글씨 만들기(feat. pytorch, MNIST)
+title: GAN으로 핸드폰 번호 손글씨 만들기(feat. pytorch, MNIST)
 excerpt: "condtional GAN과 MNIST데이터를 pytorch를 이용해 구현해보았습니다."
 categories: [GAN]
 comments: true
 use_math: true
 ---
-# GAN으로 내 핸드폰 번호 손글씨 만들기 (feat. pytorch)
+# PyTorch를 이용한 Conditional GAN 구현
 <h6 align="right">강병규</h6>
 
 이번에는 GAN과 MNIST 데이터를 이용해서 손글씨 숫자를 학습을 시키고, 핸드폰 번호를 만들어 보도록 하겠습니다. pytorch를 사용할 거구요. 그전에 잠깐 되짚어 볼 것이 있습니다.
@@ -299,4 +299,4 @@ plt.savefig('results/mnist-gan-phone.png')
 
 ## 정리
 
-오늘은 conditional-gan을 구현해봤습니다. 깔끔한 output을 만들어내는데에는 실패했지만 어느 정도의 결과물은 얻을 수 있었습니다.
+오늘은 conditional-gan을 구현해봤습니다. 흑백으로 딱 나눠지는 깔끔한 output을 만들어내는데에는 실패했지만 그래도 어느정도의 결과물은 얻을 수 있었습니다.

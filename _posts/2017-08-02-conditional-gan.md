@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Conditional GAN
+author: 강병규
 excerpt: "GAN의 변형 중 하나인 Conditional GAN입니다."
-categories: [GAN]
+categories: GAN
 comments: true
 use_math: true
 ---
 # Conditional Generative Adversarial Nets
-<h6 align="right">강병규</h6>
 
 ## Introduction
 

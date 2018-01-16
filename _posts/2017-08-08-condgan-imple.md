@@ -2,7 +2,7 @@
 layout: post
 title: GAN으로 핸드폰 번호 손글씨 만들기(feat. pytorch, MNIST)
 excerpt: "condtional GAN과 MNIST데이터를 pytorch를 이용해 구현해보았습니다."
-categories: [GAN]
+categories: [GAN, Generative model, Implementation]
 comments: true
 use_math: true
 ---
@@ -257,14 +257,14 @@ Generator.eval()
 
 ```python
 c = np.zeros([8,10]) # 010은 빼고 8자리만 하겠습니다.
-c[0, 5] = 1
-c[1, 7] = 1
-c[2, 0] = 1
-c[3, 1] = 1
-c[4, 3] = 1
-c[5, 9] = 1
-c[6, 8] = 1
-c[7, 6] = 1
+c[0, 1] = 1
+c[1, 2] = 1
+c[2, 3] = 1
+c[3, 4] = 1
+c[4, 5] = 1
+c[5, 6] = 1
+c[6, 7] = 1
+c[7, 8] = 1
 # 뒷부분에 숫자를 넣어주기만 하면 됩니다.
 ```
 
@@ -295,7 +295,7 @@ plt.savefig('results/mnist-gan-phone.png')
 ```
 이렇게 해주면 최종 결과를 얻을 수 있습니다.
 
-![mnist-gan-phone 2](https://user-images.githubusercontent.com/25279765/29065968-cb989ac4-7c68-11e7-8fd2-0402e09a53ed.png)
+![mnist-gan-phone 3](https://user-images.githubusercontent.com/25279765/33252325-de554576-d380-11e7-8f30-391a678748c5.png)
 
 ## 정리
 

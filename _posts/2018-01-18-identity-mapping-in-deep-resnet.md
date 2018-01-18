@@ -7,7 +7,7 @@ comments: true
 use_math: true
 ---
 
-# Identy Mappings in Deep Residual Networks
+# Identity Mappings in Deep Residual Networks
 <h6 align="right">강병규</h6>
 
 안녕하세요 오늘 리뷰할 논문은 [Identity Mappings in Deep Residual Networks](https://arxiv.org/pdf/1603.05027.pdf)(He et al)입니다. 전체적으로 기존에 나왔던 Residual Network(이하 ResNet)이 왜 좋은 성능이 나오나 검증하는 논문의 성격을 띕니다. 또한 논문에서 기존의 논문이 제시한 구조외의 이런저런 변형을 가했을 때 성능이 어떻게 변하는지도 검증하고 있습니다. 시작합니다.

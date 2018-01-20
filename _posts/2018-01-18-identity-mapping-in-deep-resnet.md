@@ -70,6 +70,7 @@ $$x_L = (\prod_{i=l}^{L-1}\lambda_i)x_l + \sum_{i=l}^{L-1}\hat{F}(x_i, W_i)$$
 아까와 다른 점은 $\prod_{i=l}^{L-1}\lambda_i$가 더 붙었다는 점입니다. 조금만 더 생각을 해보면 $\lambda_i > 1$이면 너무 커질 것이고, $\lambda_i < 1$이면 너무 작아지겠죠. 이렇게 된다면 shorcut path를 통한 역전파를 방해할 것입니다. 또 여기서 만약 constant scaling이 아니라 어떤 더 복잡한 식, 1x1 Conv 등을 적용했다면 어떻게 될까요? 복잡한 함수를 $h$라고 한다면 $\prod_{i=l}^{L-1}h^\prime$이 되겠죠. 이 또한 역전파과정을 방해하게 됩니다.
 
 그래서 이를 검증하기 위해 다양한 네트워크를 설계합니다.
+
 ![shortcut connection](https://user-images.githubusercontent.com/25279765/35079214-696cab4a-fc49-11e7-85fe-1693c432836c.jpg)
 
 Constant Scaling의 경우에는 $F$에는 적용하지 않은 경우, $1-\lambda = 0.5$만큼 적용한 경우로 구분할 수 있습니다. Gating의 경우에는 $g(x) = \sigma(W_gx+ b_g)$를 적용한 것인데요, 여기서 $g(x)$는 1x1 Conv와 Sigmoid를 의미합니다
@@ -88,7 +89,7 @@ Exclusive gating의 경우에는 $F$는 $g(x)$만큼 곱해주고(element-wise),
 
 원래 ResNet의 구조는 a와 같습니다. BN이 각 weight layer 다음에 들어가있고, 이후 ReLU를 거치죠. 마지막에는 addition을 한다음 ReLU를 적용합니다. 나머지는 이 논문에서 실험해본 구조들입니다.
 
-b의 경우에는 더한 다음 BN을 적용한 것이구요, c는 더하기 전에 ReLU를 넣은 것입니다.
+b의 경우에는 더한 다음 BN을 적용한 것이구요, c는 더하기 전에 ReLU를 넣은 것입니다. 나머지 두 개는 밑에서 조금 자세히 설명합니다.
 
 원래의 구조를 보면 activation이 shorcut과 residual path 모두에 영향을 미칩니다. $y_{l+1} = f(y_l) + F(f(y_l), W_{l+1})$ 이렇게 말이죠. 여기서 구조를 조금 비틀어봅시다. $\hat{f}$라고 해서 $F$에만 활성화함수를 적용하는 것이죠. 그럼 식이 이렇게 변합니다.  $y_{l+1} = f(y_l) + F(\hat{f}(y_l), W_{l+1})$. $y_l$을 $x_l$로 notation만 바꿔주면 식이
 

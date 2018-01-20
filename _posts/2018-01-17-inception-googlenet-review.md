@@ -47,9 +47,8 @@ $$ f_{i,j,k_1}^{1} = max(w_{k_1}^{1 \intercal}x_{i,j} + b_{k_1}, 0) $$
 $$ f_{i,j,k_n}^{n} = max(w_{k_n}^{n \intercal}f_{i,j}^{n-1} + b_{k_n}, 0) $$
 
 이 됩니다. 첫번째식은 일반적인 CNN 연산(
-  $$f_{i,j,k} = max(w_k^\intercal x_{i,j})$$
-  $i, j$는 픽셀의 index, $x_{i,j}$는 그 점을 중심으로 하는 input patch이며 $k$는 채널의 index입니다
-  )과 동일하다고 볼 수 있습니다. 물론 bias가 더해져 있긴 하지만 CNN에서도 bias를 추가해줄 수 있으니까요. 중요한 것은 마지막 식입니다. 마지막 식은 cross channel parametri(c pooling(CCCP)을 일반적인 Conv 레이어에 적용한 것과 같습니다. 무슨 소린지 모르겠죠?
+  $f_{i,j,k} = max(w_k^\intercal x_{i,j}, 0)$, $i, j$는 픽셀의 index, $x_{i,j}$는 그 점을 중심으로 하는 input patch이며 $k$는 채널의 index입니다
+  )과 동일하다고 볼 수 있습니다. 물론 bias가 더해져 있긴 하지만 CNN에서도 bias를 추가해줄 수 있으니까요. 중요한 것은 마지막 식입니다. 마지막 식은 cross channel parametri(c pooling(CCCP)을 일반적인 Conv 레이어에 적용한 것과 같습니다. 이는 첫번째 식이 일반적인 CNN과 동일하기 때문인데요, 무슨 소린지 모르겠죠?
 
 ![nin3](https://user-images.githubusercontent.com/25279765/35000804-aacc58f0-fb28-11e7-9b27-f28c4a6568a2.jpg)
 
@@ -57,7 +56,7 @@ $$ f_{i,j,k_n}^{n} = max(w_{k_n}^{n \intercal}f_{i,j}^{n-1} + b_{k_n}, 0) $$
 
 ![nin4](https://user-images.githubusercontent.com/25279765/35000899-eae138fc-fb28-11e7-9271-1faf59f7f3d6.jpg)
 
-요 사진의 연산을 수행한다고 볼 수 있습니다. 위의 두 사진에 써있듯 이 과정은 일반적인 Convolution 연산을 적용한 다음필터 크기가 1x1인 Convolution을 적용한 것과 동일합니다. 앞에서 말한 NIN의 목적이 무엇이었는지 기억하시나요? MLP의 도입을 통해 비선형적인 관계를 더 잘 표현하는 것이었습니다. 바로 위에서 보였듯, 결국 MLP를 통해 구하는 관계는 일반적인 CNN과 1x1 Conv의 결합으로도 표현할 수 있습니다. 즉 NIN의 의의는 이러한 1x1 Conv의 도입이라고 할 수 있죠. 결과적으로 1x1 Conv를 적절하게 사용하면 비선형적 함수를 더 잘 만들어낼 수 있게 되는 것입니다. 또한 1x1 Conv의 장점은 이것만이 아닙니다. 1x1 Conv는 채널 단위에서 Pooling을 해줍니다. 즉 1x1 Conv의 수를 입력의 채널보다 작게 하면 dimension reduction이 가능한 것이죠.
+요 사진의 연산을 수행한다고 볼 수 있습니다. 위의 두 사진에서 볼 수 있듯, 이 과정(n개의 레이어를 사용하는 MLP Conv)은 일반적인 Convolution 연산을 적용한 다음필터 크기가 1x1인 Convolution을 적용한 것과 동일합니다. 앞에서 말한 NIN의 목적이 무엇이었는지 기억하시나요? MLP의 도입을 통해 비선형적인 관계를 더 잘 표현하는 것이었습니다. 바로 위에서 보였듯, 결국 MLP를 통해 구하는 관계는 일반적인 CNN과 1x1 Conv의 결합으로도 표현할 수 있습니다. 즉 NIN의 의의는 이러한 1x1 Conv의 도입이라고 할 수 있죠. 결과적으로 1x1 Conv를 적절하게 사용하면 비선형적 함수를 더 잘 만들어낼 수 있게 되는 것입니다. 또한 1x1 Conv의 장점은 이것만이 아닙니다. 1x1 Conv는 채널 단위에서 Pooling을 해줍니다. 즉 1x1 Conv의 수를 입력의 채널보다 작게 하면 dimension reduction, 차원 축소가 가능한 것이죠.
 
 ## Deeper and Deeper
 

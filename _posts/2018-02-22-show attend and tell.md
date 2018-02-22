@@ -45,7 +45,7 @@ $$\alpha_{ti} = \frac{exp(e_{ti})}{\sum_{k=1}^L exp(e_{tk})}$$
 
 ## Soft Attention
 
-Hard Attention의 경우, 일일이 샘플링을 해줘야한다는 문제가 존재합니다. 따라서 이를 일반적인 back prop으로 End-to-End 학습을 가능하게 하기 위해 Soft Attention을 제안합니다. Soft Attention의 경우 $\phi$는 $\sum_i^L \alpha_i \mathbf{a}_i$$가 됩니다. $s$를 사용하는 대신 확률값을 바로 적용해주는 것이죠. 이렇게 하면 모델이 smooth해지고 differentiable해져 역전파를 사용할 수 있다고 합니다... (기타 과정 생략) 결국 최종 목적함수는 $L_d = -\log(p(y \lvert x)) + \lambda\sum_i^L(1-\sum_t^C{\alpha_{ti}})$가 됩니다.
+Hard Attention의 경우, 일일이 샘플링을 해줘야한다는 문제가 존재합니다. 따라서 이를 일반적인 back prop으로 End-to-End 학습을 가능하게 하기 위해 Soft Attention을 제안합니다. Soft Attention의 경우 $\phi$는 $$\sum_i^L \alpha_i \mathbf{a}_i$$가 됩니다. $s$를 사용하는 대신 확률값을 바로 적용해주는 것이죠. 이렇게 하면 모델이 smooth해지고 differentiable해져 역전파를 사용할 수 있다고 합니다... (기타 과정 생략) 결국 최종 목적함수는 $L_d = -\log(p(y \lvert x)) + \lambda\sum_i^L(1-\sum_t^C{\alpha_{ti}})$가 됩니다.
 
 ## Result
 

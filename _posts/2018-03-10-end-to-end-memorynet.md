@@ -15,7 +15,7 @@ use_math: true
 
 ## Memory Network
 
- 메모리 네트워크에 대해 간단하게 얘기해봅시다. Seq2Seq 등의 Encoder-Decoder의 구조를 생각해볼까요? Encoder는 문장 혹은 입력을 적절하게 인코딩한, 임베딩 벡터를 만들어냅니다. 보통 임베딩 벡터로는 LSTM 등의 hidden state를 사용합니다. 이렇게 되면 이전 단계의 입력들 또한 반영하는게 가능하기 때문이죠. 하지만 이 과정에서 문제가 하나 있습니다. 입력이 엄청나게 길다면? 과연 이때도 앞 부분의 입력들을 적절하게 반영하고 있다고 생각할 수 있을까요? 이러한 문제를 해결하기 위해 제안된 것이 Memory Network입니다. 메모리에 저장할 수 있는 만큼 최대한 각 단계에서의 hidden state를 저장하고, 이를 활용하는 것이죠. 이 방법 또한 아쉽게도 문제가 있는데요, Loss를 구하는 과정에서 supervision이 필요하다는 것입니다. 그럼 이제 End-to-End Memory Network는 이 문제를 어떻게 해결했는지 알아봅시다.
+ 메모리 네트워크에 대해 간단하게 얘기해봅시다. 그 전에 먼저, Seq2Seq 등의 Encoder-Decoder의 구조를 생각해볼까요? Encoder는 문장 혹은 입력을 적절하게 인코딩한, 임베딩 벡터를 만들어냅니다. 보통 임베딩 벡터로는 LSTM 등의 hidden state를 사용합니다. 이렇게 되면 이전 단계의 입력들 또한 반영하는게 가능하기 때문이죠. 하지만 이 과정에서 문제가 하나 있습니다. 입력이 엄청나게 길다면? 과연 이때도 앞 부분의 입력들을 적절하게 반영하고 있다고 생각할 수 있을까요? 이러한 문제를 해결하기 위해 제안된 것이 Memory Network입니다. 메모리에 저장할 수 있는 만큼 최대한 각 단계에서의 hidden state를 저장하고, 이를 활용하는 것이죠. 이를 Memory Network라고 합니다. 하지만 이 방법 또한 아쉽게도 문제가 있는데요, Loss를 구하는 과정에서 supervision이 필요하다는 것입니다. 그럼 이제 End-to-End Memory Network는 이 문제를 어떻게 해결했는지 알아봅시다.
 
 ## Approach
 
@@ -53,7 +53,7 @@ $$u^{k+1} = u^k + o^k$$
 
 ![image](https://user-images.githubusercontent.com/25279765/37243497-85a8eb38-24bd-11e8-845f-4aba2f5bc3ed.png)
 
-여기서 weight matrix를 위해 사용한 방법은 두 가지입니다. 첫 번째는 **adjacent** 인데요, 앞 레이어의 output embedding을 뒷 레이어의 input embedding으로 사용하는 겁니다. 즉 $A^{k+1} = C^k$가 되는 겁니다. 여기에 추가적으로 answer prediction matrix $W$를 마지막 레이어의 output embedding과 동일하게 설정합니다(W^T=C^K). question embedding의 경우에는 첫 번째 layer의 input embedding을 사용합니다. $B = A^1$. 두 번째로 사용한 방법은 **Layer-wise (RNN-like)** 입니다. 우리가 흔히 생각하는 RNN의 방법을 사용해서 모든 레이어가 $A$와 $C$를 공유하도록 하는 것이죠. 이떄에는 $u^{k+1} = Hu^k + o^k$, $H$라는 linear mapping을 추가하고, 이 또한 학습을 진행하면서 바꿔나갑니다.
+여기서 weight matrix를 위해 사용한 방법은 두 가지입니다. 첫 번째는 **adjacent** 인데요, 앞 레이어의 output embedding을 뒷 레이어의 input embedding으로 사용하는 겁니다. 즉 $A^{k+1} = C^k$가 되는 겁니다. 여기에 추가적으로 answer prediction matrix $W$를 마지막 레이어의 output embedding과 동일하게 설정합니다(W^T=C^K). question embedding의 경우에는 첫 번째 layer의 input embedding을 사용합니다. $B = A^1$. 두 번째로 사용한 방법은 **Layer-wise (RNN-like)** 입니다. 우리가 흔히 생각하는 RNN의 방법을 사용해서 모든 레이어가 $A$와 $C$를 공유하도록 하는 것이죠. 이때에는 $u^{k+1} = Hu^k + o^k$, $H$라는 linear mapping을 추가하고, 이 또한 학습을 진행하면서 바꿔나갑니다.
 
 ## Result
 

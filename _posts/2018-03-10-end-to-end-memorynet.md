@@ -23,7 +23,7 @@ use_math: true
 
 #### Single Layer
 
-![image](https://user-images.githubusercontent.com/25279765/37243449-cfaa4228-24bc-11e8-8d42-2f8747d1c755.png)
+![image](https://user-images.githubusercontent.com/25279765/37243715-a01d7098-24c1-11e8-8c09-cac5b6ac877b.png)
 
  먼저 레이어가 하나밖에 없는 경우를 생각해보고, 이를 확장시켜 나가봅시다. 우리가 $x_1,...x_i$의 입력을 받았다고 생각해봅시다. 이 각각의 $x_i$들은 embedding matrix를 활용해, $d$차원의 메모리 벡터 $m_i$가 됩니다. 정말 정말 간단하게 표현하면, embedding matrix A($d$ x  $V$)를 곱했다고 생각할 수 있을 겁니다. 위에서 말했듯이, $x_i$는 Bow형태로 표현되어 있습니다. $x_{i, j}$를 $j$번째 단어라고 한다면, 위의 과정은 $m_i = \sum_j{Ax_{i,j}}$라고 표현할 수 있게 되죠.
 

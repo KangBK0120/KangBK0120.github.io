@@ -57,6 +57,13 @@ H(P, Q) &=& H(P) + D_{KL}(P \| Q) \\
 
 classification의 경우, $P$를 label이라고 볼 수 있겠죠. 옳은 레이블에서만 $P$는 1의 값을 가질겁니다. 우리의 목표는 학습을 통해서 $Q$가 옳은 데이터를 옳다고 분류하기를 원하기에 결국 Cross entropy를 최소화하도록 학습을 시키는 것입니다.
 
+그 다음으로 소개할 것은 Jessen-Shannon Divergence(JSD)입니다. 앞서 말씀드렸듯이 KL Divergence의 문제는 asymmetric하다는 것입니다. $KL(P \| Q)$와 $KL(Q \| P)$의 값이 서로 다르기 때문에 이를 "거리"라는 척도로 사용하기에는 애매한 부분이 존재합니다. JSD는 이러한 문제를 해결할 수 있는 방법입니다.
+
+
+$$JSD(P \| Q) = \frac{1}{2}KL(P \| M) + \frac{1}{2}KL(P \| M)$$
+
+으로 표현할 수 있고, 이때 M은 $\frac{1}{2}(P+Q)$를 의미합니다. 따라서 JSD는 P와 Q의 순서와 상관없이 항상 동일한 값을 가지며 0 이상의 non negative한 값들을 가지므로, 어떠한 "거리" 혹은 "척도"로 사용할 수 있게 됩니다.
+
 ## Reference
 
 [https://ratsgo.github.io/statistics/2017/09/22/information/](https://ratsgo.github.io/statistics/2017/09/22/information/)

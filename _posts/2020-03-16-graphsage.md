@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Inductive Representation Learning on Large Graphs, GraphSage
-excerpt: "GCN의 일종인 GraphSage를 읽고 정리해봤습니다."
+title: Inductive Representation Learning on Large Graphs, GraphSage with Stellargraph
+excerpt: "GCN의 일종인 GraphSage를 읽고 정리해보고, Stellargraph library를 이용해 간단한 예제를 학습시켜봤습니다."
 categories: [Review, GCN]
 comments: true
 use_math: true
@@ -48,7 +48,7 @@ Depth번 만큼 이를 학습해주었다면, 마지막에 얻은 Feature들을 
 
 ![image](https://user-images.githubusercontent.com/25279765/76823847-bc131780-6858-11ea-956f-0daf94342329.png)
 
-어떠한 노드가 주어졌을 때, 그 노드와 바로 연결되어 있는 노드가 k=1에 속한 노드가 되고, k=1에 있는 노드들과 연결되어 있는 노드들이 k=2에 속한 노드가 됩니다. k=2에 속한 노드를 이용해 k=1에 속한 노드들의 feature를 구하고, 이를 이용해 최종적으로 우리가 원하는 노드의 feature를 구하게 되는 것입니다.
+가운데 빨간 색 노드가 우리가 뽑은 배치에 들어간 노드라고 한다면, 이 노드가 $\mathcal{B}^2$에 속한 노드가 될 것입니다. 이 노드의 Neighbor들을 샘플링한 것이 $\mathcal{B}^1$이 되고, 다시 $\mathcal{B}^1$에 속해있는 노드들의 Neighbor를 모은 것이 $\mathcal{B}^0$가 됩니다. 따라서 어떠한 노드가 주어졌을 때, 그 노드와 바로 연결되어 있는 노드가 k=1에 속한 노드가 되고, k=1에 있는 노드들과 연결되어 있는 노드들이 k=2에 속한 노드가 되는 것이죠. 결과적으로 k=2에 속한 노드를 이용해 k=1에 속한 노드들의 feature를 구하고, 이를 이용해 최종적으로 우리가 원하는 노드의 feature를 구하게 되는 것입니다.
 
 ## Backword
 

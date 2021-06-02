@@ -36,7 +36,7 @@ kramdown:
 owner:
   name: 강병규
   avatar: yBigTa.gif
-  job: "연세대 컴퓨터과학과 | 연세대 빅데이터 학회 yBigTa"
+  job: #"연세대 컴퓨터과학과 | 연세대 빅데이터 학회 yBigTa"
   bio: "반갑습니당"
   email: lejkbk0930@gmail.com
   disqus-shortname: KangBK

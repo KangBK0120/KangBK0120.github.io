@@ -30,7 +30,7 @@ use_math: true
 
 어떠한 기능도 없는 간단한 화면을 먼저 만들어봅시다. 유저가 파일을 선택할 수 있는 버튼과 선택한 파일의 이름을 보여주는 박스, 그리고 이를 서버로 보내는 버튼으로 이루어진 간단한 화면입니다.
 
-<center><img height="400" alt="스크린샷 2021-10-16 오후 4 12 06" src="https://user-images.githubusercontent.com/25279765/137580981-64cae8b2-0853-409b-bb28-39c850cfc536.png"></center>
+<center><img height="400" alt="스크린샷 2021-10-16 오후 4 12 06" src="https://user-images.githubusercontent.com/25279765/137580981-64cae8b2-0853-409b-bb28-39c850cfc536.png" height="30%" height="30%"></center>
 
 ```dart
 class MyHomePage extends StatefulWidget {
@@ -187,9 +187,9 @@ Container(
 // Elevated Button
 ```
 
-<center><img height="400" alt="스크린샷 2021-10-16 오후 4 18 59" src="https://user-images.githubusercontent.com/25279765/137581000-49b4332a-e949-4ee6-9383-ad9271cad424.png"></center>
+<center><img  alt="스크린샷 2021-10-16 오후 4 18 59" src="https://user-images.githubusercontent.com/25279765/137581000-49b4332a-e949-4ee6-9383-ad9271cad424.png" height="30%" height="3%"></center>
 
-<center><img height="400" alt="스크린샷 2021-10-16 오후 4 19 33" src="https://user-images.githubusercontent.com/25279765/137581007-de927892-9a68-49b0-a731-9c1b6ef9d954.png"></center>
+<center><img alt="스크린샷 2021-10-16 오후 4 19 33" src="https://user-images.githubusercontent.com/25279765/137581007-de927892-9a68-49b0-a731-9c1b6ef9d954.png" height="30%" height="30%"></center>
 
 
 ## Upload to S3 with presigned URL

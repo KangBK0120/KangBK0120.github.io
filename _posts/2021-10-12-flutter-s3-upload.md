@@ -30,7 +30,7 @@ use_math: true
 
 어떠한 기능도 없는 간단한 화면을 먼저 만들어봅시다. 유저가 파일을 선택할 수 있는 버튼과 선택한 파일의 이름을 보여주는 박스, 그리고 이를 서버로 보내는 버튼으로 이루어진 간단한 화면입니다.
 
-<img height="400" alt="스크린샷 2021-10-16 오후 4 12 06" src="https://user-images.githubusercontent.com/25279765/137580981-64cae8b2-0853-409b-bb28-39c850cfc536.png">
+<center><img height="400" alt="스크린샷 2021-10-16 오후 4 12 06" src="https://user-images.githubusercontent.com/25279765/137580981-64cae8b2-0853-409b-bb28-39c850cfc536.png"></center>
 
 ```dart
 class MyHomePage extends StatefulWidget {
@@ -133,7 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
 이제 버튼을 누르면 이 함수를 실행해야합니다.
 
 ```dart
-
 @override
   Widget build(BuildContext context) {
     // ...
@@ -147,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 이제 버튼을 눌러보면 파일을 선택할 수 있는 창이 뜨게 됩니다.
 
-<img width="849" alt="스크린샷 2021-10-16 오후 4 13 33" src="https://user-images.githubusercontent.com/25279765/137580989-7d41a856-1a32-467f-a4c5-45e346c511f1.png">
+<center><img width="849" alt="스크린샷 2021-10-16 오후 4 13 33" src="https://user-images.githubusercontent.com/25279765/137580989-7d41a856-1a32-467f-a4c5-45e346c511f1.png"></center>
 
 이제 유저가 파일을 선택할 때마다 어떤 파일을 선택했는지 확인할 수 있도록 이름을 함께 보여주도록 합시다. 보여지는 크기를 넘어갈 수 있으니 스크롤바와 Listview를 이용합니다. 업로드한 파일이 없는 경우에는 유저가 파일을 업로드해야함을 알 수 있게 문구를 보여줍니다. 또한 유저가 선택한 파일을 업로드하고 싶지 않을 수도 있으니, 삭제 버튼도 추가해주었습니다.
 
@@ -188,16 +187,16 @@ Container(
 // Elevated Button
 ```
 
-<img height="400" alt="스크린샷 2021-10-16 오후 4 18 59" src="https://user-images.githubusercontent.com/25279765/137581000-49b4332a-e949-4ee6-9383-ad9271cad424.png">
+<center><img height="400" alt="스크린샷 2021-10-16 오후 4 18 59" src="https://user-images.githubusercontent.com/25279765/137581000-49b4332a-e949-4ee6-9383-ad9271cad424.png"></center>
 
-<img height="400" alt="스크린샷 2021-10-16 오후 4 19 33" src="https://user-images.githubusercontent.com/25279765/137581007-de927892-9a68-49b0-a731-9c1b6ef9d954.png">
+<center><img height="400" alt="스크린샷 2021-10-16 오후 4 19 33" src="https://user-images.githubusercontent.com/25279765/137581007-de927892-9a68-49b0-a731-9c1b6ef9d954.png"></center>
 
 
 ## Upload to S3 with presigned URL
 
 이제 유저가 파일을 선택하고, 원하지 않는 파일은 삭제할 수 있게 되었습니다. 남은 부분은 이렇게 유저가 선택한 파일을 S3에 업로드하는 것입니다. 여기서는 편의를 위해 미리 생성된 presigned URL에 하나의 파일만을 업로드하도록 하겠습니다. s3 bucket이 없는 경우에는 이를 생성해주세요.
 
-<img width="828" alt="스크린샷 2021-10-16 오후 4 25 22" src="https://user-images.githubusercontent.com/25279765/137581009-24e5306f-a17d-4eae-81ea-f291a8310af3.png">
+<center><img width="828" alt="스크린샷 2021-10-16 오후 4 25 22" src="https://user-images.githubusercontent.com/25279765/137581009-24e5306f-a17d-4eae-81ea-f291a8310af3.png"></center>
 
 이제 간단한 presigned URL을 생성해봅시다. python으로 생성해보도록 하겠습니다. 업로드의 경우 POST가 아니라 PUT이 된다는 사실에 주의해주세요.
 
@@ -260,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 이를 해결하기 위해서는 S3 bucket에 관련된 속성을 추가해주어야 합니다. 권한-CORS로 이동해 아래를 추가해줍니다.
 
-<img width="835" alt="스크린샷 2021-10-16 오후 5 11 48" src="https://user-images.githubusercontent.com/25279765/137581020-1b5cc480-a679-407e-819b-2275ccd8fd8c.png">
+<center><img width="835" alt="스크린샷 2021-10-16 오후 5 11 48" src="https://user-images.githubusercontent.com/25279765/137581020-1b5cc480-a679-407e-819b-2275ccd8fd8c.png"></center>
 
 ```json
 [
@@ -287,7 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 이후에 크롬의 캐시 데이터를 삭제하고, 다시 버튼을 눌러 요청을 보내주면 정상적으로 업로드가 된 것을 확인할 수 있습니다.
 
-<img width="1325" alt="스크린샷 2021-10-16 오후 5 22 20" src="https://user-images.githubusercontent.com/25279765/137581029-b509814c-7d60-4ff1-b165-5bf68fd0ddd7.png">
+<center><img width="1325" alt="스크린샷 2021-10-16 오후 5 22 20" src="https://user-images.githubusercontent.com/25279765/137581029-b509814c-7d60-4ff1-b165-5bf68fd0ddd7.png"></center>
 
 ## Download from S3 with presigned URL
 

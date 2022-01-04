@@ -2,7 +2,7 @@
 layout: post
 title: Linux Namespace에 대하여
 excerpt: "네임스페이스에 대한 간단한 정리"
-categories: [Flutter, AWS]
+categories: [Linux, Docker]
 comments: true
 use_math: true
 ---

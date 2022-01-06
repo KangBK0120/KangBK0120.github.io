@@ -65,6 +65,7 @@ PID는 리눅스에서 프로세스에 붙여주는 아이디입니다. 시스�
 ## PID namespace, IPC namespace
 
 PID 네임스페이스는 이런 PID가 서로 독자적으로 존재하는 영역을 생각해보면 됩니다.
+
 ![PID namespace](https://uploads.toptal.io/blog/image/674/toptal-blog-image-1416487554032.png)
 > 출처: https://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces
 

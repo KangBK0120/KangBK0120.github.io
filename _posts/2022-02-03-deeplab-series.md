@@ -63,7 +63,7 @@ Segmentation을 생각해보면 어떤 물체는 여러 크기로 존재할 수 
 
 ## Deeplab v3
 
-###### Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation
+###### Rethinking Atrous Convolution for Semantic Image Segmentation
 
 ### Augmented ASPP
 

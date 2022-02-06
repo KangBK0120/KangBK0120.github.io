@@ -33,13 +33,13 @@ DCNN, Deep Convolution Neural Network는 Image classification 등에서 좋은 �
 
 이전에도 Noise한 결과를 smooth하게 만들기 위해 CRF가 많이 사용되었다고 하는데요, 이 경우에는 Fully-connected 대신 주변의 정보만을 사용하는 local-range CRF를 사용했다고 합니다. 주변 노드들(픽셀들)을 결합하는 에너지 항이 존재해, 공간적으로 가까운 노드들보다 같은 레이블을 가지는 노드들을 선호하도록 만들어주었습니다. 하지만 이러한 후처리를 하는 것은 local 정보를 더 잘 만들어 sharp한 결과물을 만들기 위해서였는데, 이미 DCNN의 출력은 충분히 smooth해 굳이 이러한 short-range CRF를 사용할 이유가 없다고 합니다. 따라서 저자들은 대신 FC-CRF를 사용합니다. FC-CRF는 다음과 같은 수식으로 정의됩니다.
 
-$E(\mathbf{x}) = \sum_i \theta_i (x_i) + \sum_{ij} \theta_{ij}(x_i, x_j)$
+$$E(\mathbf{x}) = \sum_i \theta_i (x_i) + \sum_{ij} \theta_{ij}(x_i, x_j)$$
 
 $\mathbf{x}$는 픽셀의 label assignment를 나타냅니다. 우변의 첫번째 항은 unary potential로, $\theta_i (x_i) = - \log P(x_i)$, 곧 negative log probability로 정의됩니다. 두 번째 항은 pairwise potential로 $\theta_{ij} = \mu(x_i, x_j)\sum_{m=1}^K w_m * k^m(\mathbf{f}_i, \mathbf{f}_j)$로 정의됩니다. 이때 $i \neq j$일 때만 $\mu(x_i, x_j)$는 1이 됩니다. 아무리 거리가 먼 i, j라고 하더라도 항상 이 값을 구하게 되어 fully connected라는 이름이 붙었습니다.
 
 $k^m$은 i, j의 feature에 의존하는 Gaussian kernel입니다. 여기서 kernel은 
 
-$w_1 \exp( -\frac{\lVert p_i - p_j \rVert^2}{2\sigma^2_\alpha} -\frac{\lVert I_i - I_j \rVert^2}{2\sigma^2_\beta}) + w_2\exp(-\frac{\lVert p_i - p_j \rVert^2}{2\sigma^2_\gamma})$
+$$w_1 \exp( -\frac{\lVert p_i - p_j \rVert^2}{2\sigma^2_\alpha} -\frac{\lVert I_i - I_j \rVert^2}{2\sigma^2_\beta}) + w_2\exp(-\frac{\lVert p_i - p_j \rVert^2}{2\sigma^2_\gamma})$$
 
 입니다. 첫 번째 커널은 pixel position $p$와 pixel color intensity $I$의 결합으로 정의되며 두 번째 항은 pixel position만을 고려합니다.
 

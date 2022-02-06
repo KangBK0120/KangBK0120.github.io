@@ -39,7 +39,7 @@ $\mathbf{x}$는 픽셀의 label assignment를 나타냅니다. 우변의 첫번�
 
 $k^m$은 i, j의 feature에 의존하는 Gaussian kernel입니다. 여기서 kernel은 
 
-$w_1 \exp( -\frac{||p_i - p_j||^2}{2\sigma^2_\alpha} -\frac{||I_i - I_j||^2}{2\sigma^2_\beta}) + w_2\exp(-\frac{||p_i - p_j ||^2}{2\sigma^2_\gamma})$
+$w_1 \exp( -\frac{||p_i - p_j||^2}{2\sigma^2_\alpha} -\frac{||I_i - I_j||^2}{2\sigma^2_\beta})$ + w_2\exp(-\frac{||p_i - p_j ||^2}{2\sigma^2_\gamma})$
 
 입니다. 첫 번째 커널은 pixel position $p$와 pixel color intensity $I$의 결합으로 정의되며 두 번째 항은 pixel position만을 고려합니다.
 

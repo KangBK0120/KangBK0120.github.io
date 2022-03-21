@@ -9,7 +9,7 @@ use_math: true
 
 # Kserve Istio dex 우회하기
 
-요근래 kubeflow 등 MLOps적인 부분들을 회사에서 작업하고 있다. 원래는 모델 배포 쪽은 기존 방식대로 진행하려 했지만 데이터 분석 팀에서 모델 배포 과정을 빠르게 진행하고 싶어해 **kserve**도 함께 사용하기로 했다. 온프레미스 환경에서 관련한 테스트를 진행하다 dex 인증 관련 문제를 만나 이를 해결하는 방법에 대해 간단하게 정리한다.
+요즈음 kubeflow 등 MLOps적인 부분들을 회사에서 작업하고 있다. 원래는 모델 배포 쪽은 기존 방식대로 진행하려 했지만 데이터 분석팀에서 모델 배포 과정을 빠르게 진행하고 싶어 해 **kserve**도 함께 사용하기로 했다. 온프레미스 환경에서 관련한 테스트를 진행하다 dex 인증 관련 문제를 만나 이를 해결하는 방법에 대해 간단하게 정리한다.
 
 ![image](https://www.kubeflow.org/docs/images/Istio-in-KF.svg)
 > kubeflow와 istio 구성, [공식문서](https://www.kubeflow.org/docs/external-add-ons/istio/istio-in-kubeflow/)
@@ -18,7 +18,7 @@ Kubeflow를 배포하면서 istio와 dex를 함께 배포했다. istio는 서비
 
 ![image](https://www.kubeflow.org/docs/external-add-ons/kserve/pics/kserve.png)
 
-kserve를 serveless한 구성으로 배포하기 위해서는 knative를 함께 배포해야한다. 이 knative는 다시 istio를 이용해 서로를 연결한다. 문제는 여기서 발생하는데 api 요청이 istio 게이트웨이를 거치면서 인증 정보가 필요한 것이다. 클러스터 바깥에서 연결하는 경우에만 인증을 요구하면 괜찮은데, 클러스터 내에서 서비스를 통해 연결해도 이러한 인증을 요구한다.
+kserve를 serveless한 구성으로 배포하기 위해서는 knative를 함께 배포해야 한다. 이 knative는 다시 istio를 이용해 서로를 연결한다. 문제는 여기서 발생하는데 api 요청이 istio 게이트웨이를 거치면서 인증 정보가 필요한 것이다. 클러스터 바깥에서 연결하는 경우에만 인증을 요구하면 괜찮은데, 클러스터 내에서 서비스를 통해 연결해도 이러한 인증을 요구한다.
 
 ## 설치
 
@@ -75,14 +75,23 @@ kubectl exec --stdin --tty myapp-pod -- /bin/sh
 그 다음에 예제에 나와 있는 json파일을 생성하고 서비스로 요청을 전송해보자. 
 
 ```bash
+cat <<EOF > "./iris-input.json"
+{
+  "instances": [
+    [6.8,  2.8,  4.8,  1.4],
+    [6.0,  3.4,  4.5,  1.6]
+  ]
+}
+EOF
+
 curl -v http://sklearn-iris.kserve-test.svc.cluster.local/v1/models/sklearn-iris:predict -d @./iris-input.json
 ```
 
 그러면 아마 응답 코드로 302번과 함께 dex 인증 관련한 정보가 나올 것이다.
 
-사실 이 문제를 해결하려면 요구하는대로 dex 인증에 관련한 정보를 함께 담아 요청을 보내면 된다. 공식 레포에 [친절한 예시](https://github.com/kserve/kserve/blob/master/docs/samples/istio-dex/README.md)도 있다. 나와있는 대로 CLI에서 지지고 볶을 수도 있고, 심지어는 kubeflow 대시보드에 로그인하고 거기서 사용하는 정보를 가져와 헤더에 담아 요청을 보낼 수도 있다.
+사실 이 문제를 해결하려면 요구하는 대로 dex 인증에 관련한 정보를 함께 담아 요청을 보내면 된다. 공식 레포에 [친절한 예시](https://github.com/kserve/kserve/blob/master/docs/samples/istio-dex/README.md)도 있다. 나와있는 대로 CLI에서 지지고 볶을 수도 있고, 심지어는 kubeflow 대시보드에 로그인하고 거기서 사용하는 정보를 가져와 헤더에 담아 요청을 보낼 수도 있다.
 
-하지만 이것만으로 충분할까? 여기서 문제는 istio를 사용하는 모든 어플리케이션이 이 dex 정보를 요구한다는데 있다. 만약 백엔드 팀에서 istio를 사용한다면 머신러닝 팀에서 사용하는 dex를 위해 그 때마다 키를 생성해야만 할까? 비슷한 문제를 겪는 사람들의 이슈도 종종 있는 것 같다([#1](https://github.com/kubeflow/kubeflow/issues/4549) [#2](https://github.com/kubeflow/kubeflow/issues/6401), 첫번째는 2019년에 올라온 이슈지만 두번째는 당장 며칠 전에 올라온 이슈다)
+하지만 이것만으로 충분할까? 여기서 문제는 istio를 사용하는 모든 어플리케이션이 이 dex 정보를 요구한다는 데 있다. 만약 백엔드 팀에서 istio를 사용한다면 머신러닝 팀에서 사용하는 dex를 위해 그때마다 키를 생성해야만 할까? 비슷한 문제를 겪는 사람들의 이슈도 종종 있는 것 같다([#1](https://github.com/kubeflow/kubeflow/issues/4549) [#2](https://github.com/kubeflow/kubeflow/issues/6401), 첫번째는 2019년에 올라온 이슈지만 두번째는 당장 며칠 전에 올라온 이슈다)
 
 ## 원인
 

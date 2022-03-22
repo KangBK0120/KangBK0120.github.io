@@ -79,7 +79,7 @@ spec:
         - --http_port=8080
 ```
 
-이 예시에는 아주 아주 아주 큰 **문제**가 하나 있는데 모델의 이름이 명시되어 있지 않다는 것이다. 이 서빙 런타임을 이용해 모델을 배포하면 모델이 기본 이름인 `model`로 배포된다. 만약 Transformer를 사용하고 있는 경우라면 Transformer가 Predictor를 못찾을 것이고, 그냥 Predictor만 배포하는 경우에도 API 엔드포인트의 이름 또한 그냥 model이 되어버린다. 제대로 작성한 올바른 예시는 아래와 같다.
+이 예시에는 아주 아주 아주 큰 **문제**가 하나 있는데 모델의 이름이 명시되어 있지 않다는 것이다. 이 서빙 런타임을 이용해 모델을 배포하면 모델이 기본 이름인 `model`로 배포된다. 만약 Transformer를 사용하고 있는 경우라면 Transformer가 Predictor를 못찾을 것이고, 그냥 Predictor만 배포하는 경우에도 API 엔드포인트의 이름 또한 그냥 model이 되어버린다. 제대로 작성한 올바른 예시는 아래와 같다. `--model_name={{.Name}}`이라는 옵션을 추가해주어야 한다.
 
 ```yaml
 apiVersion: serving.kserve.io/v1alpha1
@@ -95,7 +95,7 @@ spec:
     - name: kserve-container
       image: {user}/{repo}:{tag}
       args:
-        - --model_name=\{{.Name}\}
+        - --model_name={{.Name}}
         - --model_dir=/mnt/models
         - --http_port=8080
 ```

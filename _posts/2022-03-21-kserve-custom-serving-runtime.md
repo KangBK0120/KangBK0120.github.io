@@ -95,7 +95,7 @@ spec:
     - name: kserve-container
       image: {user}/{repo}:{tag}
       args:
-        - --model_name={{.Name}}
+        - --model_name=\{{.Name}\}
         - --model_dir=/mnt/models
         - --http_port=8080
 ```

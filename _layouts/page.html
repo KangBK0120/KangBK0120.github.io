@@ -1,23 +1,10 @@
 ---
 layout: default
 ---
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-  <div id="page">
-    <header class="page-header">
-      <h2>{{ page.title }}</h2>
-    </header>
 
-    <article class="page-content">
-      {{ content }}
-    </article>
+{%-include back_link.html-%}
 
+<h1>{{ page.title }}</h1>
 
-  </div><!-- end page content -->
+{{ content }}
 
-
-  {% if site.owner.disqus-shortname and page.comments == true %}
-  <div id="disqus_thread"></div>
-  {% include disqus.html %}
-  {% endif %}

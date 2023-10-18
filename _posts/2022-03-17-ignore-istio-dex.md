@@ -2,9 +2,7 @@
 layout: post
 title: kserve istio dex 우회하기
 excerpt: "knative, kserve 등 istio 환경에서 dex 인증을 우회하는 법"
-categories: [MLOps]
-comments: true
-use_math: true
+category: MLOps
 ---
 
 # Kserve Istio dex 우회하기

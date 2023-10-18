@@ -2,9 +2,7 @@
 layout: post
 title: Identity Mappings in Deep Residual Networks 리뷰
 excerpt: "CNN을 활용한 모델 중 하나인 ResNet을 다양한 구조로 실험한 논문입니다."
-categories: [CNN, ResNet, Review]
-comments: true
-use_math: true
+category: ML
 ---
 
 # Identity Mappings in Deep Residual Networks

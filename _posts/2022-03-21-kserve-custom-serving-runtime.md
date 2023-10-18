@@ -2,9 +2,7 @@
 layout: post
 title: kserve custom serving runtime 사용하기
 excerpt: "kserve에서 serving runtime을 이용해 커스텀 환경 사용하기"
-categories: [MLOps]
-comments: true
-use_math: true
+category: MLOps
 ---
 
 # KSERVE CUSTOM SERVING RUNTIME

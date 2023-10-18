@@ -2,9 +2,7 @@
 layout: post
 title: GAN으로 핸드폰 번호 손글씨 만들기(feat. pytorch, MNIST)
 excerpt: "condtional GAN과 MNIST데이터를 pytorch를 이용해 구현해보았습니다."
-categories: [GAN, Generative model, Implementation]
-comments: true
-use_math: true
+category: ML
 ---
 # PyTorch를 이용한 Conditional GAN 구현
 <h6 align="right">강병규</h6>

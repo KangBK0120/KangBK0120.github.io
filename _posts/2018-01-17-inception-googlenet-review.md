@@ -2,9 +2,7 @@
 layout: post
 title: Inception(GoogLeNet) 리뷰
 excerpt: "CNN의 변형 중 하나인 Inception 모듈과 이를 활용한 GoogLeNet에 대해 정리해보았습니다."
-categories: [CNN, Inception, Review]
-comments: true
-use_math: true
+category: ML
 ---
 
 # Inception(Going Deeper with Convolutions)

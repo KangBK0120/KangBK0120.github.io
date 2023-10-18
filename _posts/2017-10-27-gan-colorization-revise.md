@@ -2,9 +2,7 @@
 layout: post
 title: GAN colorization
 excerpt: "GAN으로 흑백이미지에 색을 입혀봤습니다."
-categories: [GAN, Generative model, Review, Implementation]
-comments: true
-use_math: true
+category: ML
 ---
 
 # GAN으로 흑백 이미지 색칠하기

@@ -2,9 +2,7 @@
 layout: post
 title: Pytorch로 DCGAN 구현해보기
 excerpt: "CIFAR-10 데이터를 이용해 DCGAN을 Pytorch로 구현해보았습니다."
-categories: [GAN, Generative model, Implementation]
-comments: true
-use_math: true
+category: ML
 ---
 # DCGAN으로 만들어보는 CIFAR-10
 

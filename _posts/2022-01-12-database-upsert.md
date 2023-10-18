@@ -2,9 +2,7 @@
 layout: post
 title: Database Upsert with SQLAlchemy
 excerpt: "데이터베이스에서 Insert와 실패 시 Update를 수행하는 Upsert에 대한 정리"
-categories: [Database]
-comments: true
-use_math: true
+category: 개발
 ---
 
 # Upsert

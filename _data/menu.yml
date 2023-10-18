@@ -1,0 +1,51 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+  - title: info
+    entries:
+      - title: resume
+        url: https://bkkang.notion.site/Byeongkyu-Kang-60edf2f1195648bda4d84f498814d505
+      - title: github
+        url: https://github.com/KangBK0120
+      - title: linkedin
+        url: www.linkedin.com/in/병규-강-9ba6211a4
+
+  - title: all posts
+    post_list:
+      limit: 10
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: articles
+  
+  - title: ML
+    post_list:
+      category: ML
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: ml
+
+  - title: 개발
+    post_list:
+      category: 개발
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: develop
+
+  - title: MLOps
+    post_list:
+      category: MLOps
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: mlops
+  
+  - title: 기타
+    post_list:
+      category: Etc
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: etc

@@ -2,9 +2,7 @@
 layout: post
 title: Flutter에서 S3에 파일 업로드, 다운로드하기
 excerpt: "Flutter와 S3 presigned url을 이용해, 컴퓨터나 모바일에 위치한 파일을 S3에 업로드하고 다운로드하는 코드 소개"
-categories: [Flutter, AWS]
-comments: true
-use_math: true
+category: 개발
 ---
 
 # Flutter S3 Upload

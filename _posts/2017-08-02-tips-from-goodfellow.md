@@ -2,9 +2,7 @@
 layout: post
 title: Tips from Goodfellow, NIPS 2016
 excerpt: "GAN의 창시자, Goodfellow가 NIPS 2016에서 발표한 내용입니다"
-categories: [GAN, Generative model, Review]
-comments: true
-use_math: true
+category: ML
 ---
 # NIPS 2016 Tutorial: GAN
 ### Tips from Goodfellow

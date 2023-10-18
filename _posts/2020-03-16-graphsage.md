@@ -2,9 +2,7 @@
 layout: post
 title: Inductive Representation Learning on Large Graphs, GraphSage with Stellargraph
 excerpt: "GCN의 일종인 GraphSage를 읽고 정리해보고, Stellargraph library를 이용해 간단한 예제를 학습시켜봤습니다."
-categories: [Review, GCN]
-comments: true
-use_math: true
+category: ML
 ---
 
 # GraphSage

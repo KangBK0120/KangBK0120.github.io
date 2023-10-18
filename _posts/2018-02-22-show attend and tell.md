@@ -2,9 +2,7 @@
 layout: post
 title: Show Attend and Tell 리뷰
 excerpt: "Image Captioning에 관한 논문을 읽고 리뷰해봤습니다"
-categories: [NLP, Review]
-comments: true
-use_math: true
+category: ML
 ---
 # Show Attend and Tell
 

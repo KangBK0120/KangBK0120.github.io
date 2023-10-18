@@ -2,9 +2,7 @@
 layout: post
 title: kserve custom transformer 사용하기
 excerpt: "kserve에서 전처리와 후처리를 위해 custom transformer를 사용하는 법"
-categories: [MLOps]
-comments: true
-use_math: true
+category: MLOps
 ---
 
 # KSERVE CUSTOM TRANSFORMER

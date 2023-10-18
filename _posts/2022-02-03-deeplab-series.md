@@ -2,9 +2,7 @@
 layout: post
 title: Deeplab series 정리
 excerpt: "Deeplab v1, Deeplab v2, Deeplab v3, Deeplab v3+ 등 Deeplab series 정리"
-categories: [Segmentation, Review]
-comments: true
-use_math: true
+category: ML
 ---
 
 # Deeplab series

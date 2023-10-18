@@ -2,9 +2,7 @@
 layout: post
 title: Visualizaing and Understanding Convolution Networks 리뷰
 excerpt: "다양한 실험을 통해 CNN의 작동 방식을 연구한 논문입니다."
-categories: [CNN, Review]
-comments: true
-use_math: true
+category: ML
 ---
 
 # Visualizaing and Understanding Convolution Networks 리뷰

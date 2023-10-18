@@ -15,5 +15,37 @@ entries:
     post_list:
       limit: 10
       show_more: true
-      show_more_text: See archive...
+      show_more_text: See more posts...
       show_more_url: articles
+  
+  - title: ML
+    post_list:
+      category: ML
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: ml
+
+  - title: 개발
+    post_list:
+      category: 개발
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: develop
+
+  - title: MLOps
+    post_list:
+      category: MLOps
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: mlops
+  
+  - title: 기타
+    post_list:
+      category: Etc
+      limit: 5
+      show_more: true
+      show_more_text: See more posts...
+      show_more_url: etc

@@ -2,9 +2,7 @@
 layout: post
 title: End-to-End Memory Network
 excerpt: "Memory Network를 end-to-end로 학습이 가능하게 한 모델인 End-to-End Memory Networ에 대한 리뷰"
-categories: [NLP, Review]
-comments: true
-use_math: true
+category: ML
 ---
 
 # End-to-End Memory Network

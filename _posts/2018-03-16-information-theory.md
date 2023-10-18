@@ -2,9 +2,7 @@
 layout: post
 title: Information Theory에 대한 정리
 excerpt: "Information theory, entropy 등에 대해 공부한 뒤 간략하게 정리해봤습니다."
-categories: [Study]
-comments: true
-use_math: true
+category: ML
 ---
 
 ## Information Theory

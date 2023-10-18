@@ -1,71 +1,32 @@
-#
-###################################
-# Site wide configuration
-####################################
-#
-title: KangBK
-email: lejkbk0930@gmai.com
-description: 반갑습니다!
-url: # the base hostname & protocol for your site
+title: BK's blog # name of the site
+author: Byeongkyu Kang # name of site's author
+email: lejkbk0930@gmail.com # email of site's author
+url: https://kangbk0120.github.io # root address of the site
+baseurl: "" # subpath of the site, e.g. "/blog" (leave it blank "" if you're site shouldn't use a subpath)
+description: > # description of the site (multiple lines allowed)
+  BK's blog
 
+permalink: /articles/:year-:month/:title
 
-#
-###################################
-# Jekyll configuration
-####################################
-#
-timezone:          Asia/Seoul
-markdown:          kramdown
-mathjax: true
-highlighter:       rouge
-excerpt_separator: <!--more-->
-permalink:         /articles/:year-:month/:title
+favicon: "logo.png" # name+extension of favicon (which must be put on the root folder)
+# goat_counter: "yoursitename" # put your GoatCounter name if you want to use GoatCounter analytics
+
+theme: no-style-please # if you are using GitHub Pages, change it to remote_theme: riggraz/no-style-please
+
+theme_config:
+  appearance: "light" # can be "light", "dark" or "auto"
+  back_home_text: ".." # customize text for homepage link in post layout
+  date_format: "%Y-%m-%d" # customize how date is formatted
+  show_description: false # show blog description in home page
+
+sass:
+  style: :compressed
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
 
 kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  enable_coderay: false
-
-#
-###################################
-# Site Owner configuration
-####################################
-#
-owner:
-  name: 강병규
-  avatar: yBigTa.gif
-  job: #"연세대 컴퓨터과학과 | 연세대 빅데이터 학회 yBigTa"
-  bio: "반갑습니당"
-  email: lejkbk0930@gmail.com
-  disqus-shortname: KangBK
-  twitter: #username
-  facebook: #KangBK0120
-  google:
-    plus: #username
-    analytics:
-    verify:
-    ad-client:
-    ad-slot:
-  bing-verify:
-  github: KangBK0120
-  gitlab: #username
-  stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
-  linkedin: #username
-  skype: #username
-  xing: #username
-  instagram: #username
-  lastfm: #username
-  tumblr: #username
-  pinterest: #username
-  foursquare: #username
-  steam: #username
-  dribbble: #username
-  youtube: #username
-  soundcloud: #username
-  weibo: #username
-  flickr: #username
-  500px: #username
-  codepen: #username
-  reddit: #username
+  math_engine: mathjax
+  input: GFM
+  syntax_highlighter: rouge

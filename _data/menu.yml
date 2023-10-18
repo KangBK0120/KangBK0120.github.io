@@ -4,10 +4,12 @@
 entries:
   - title: info
     entries:
-      - title: a (nearly) no-CSS, fast, minimalist Jekyll theme.
-      - title: github repo
-        url: https://github.com/riggraz/no-style-please
-      - title: "used by <a href='https://riggraz.dev'>riggraz.dev</a> and <a href='https://github.com/riggraz/no-style-please/network/dependents'>many others</a>"
+      - title: resume
+        url: https://bkkang.notion.site/Byeongkyu-Kang-60edf2f1195648bda4d84f498814d505
+      - title: github
+        url: https://github.com/KangBK0120
+      - title: linkedin
+        url: www.linkedin.com/in/병규-강-9ba6211a4
 
   - title: all posts
     post_list:

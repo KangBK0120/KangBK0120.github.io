@@ -2,9 +2,7 @@
 layout: post
 title: CGI, WSGI, ASGI 정리
 excerpt: "CGI, WSGI, ASGI란 무엇일까"
-categories: [Server, Python]
-comments: true
-use_math: true
+category: 개발
 ---
 
 # CGI, WCGI, ASGI 정리

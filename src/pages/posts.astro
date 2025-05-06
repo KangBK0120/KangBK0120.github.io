@@ -11,7 +11,7 @@ const groupedPosts = groupPostsByYear(allPosts);
 <html>
     <Header pageTitle="Posts" />
     <body>
-        <div class="max-w-screen-sm mx-auto min-h-screen">
+        <div class="max-w-screen-sm mx-auto min-h-screen pb-20">
             <div class="flex justify-between pt-32 mb-20">
                 <h1 class="text-xl font-bold font-sans">Posts</h1>
                 <div class="flex gap-4">
@@ -25,15 +25,15 @@ const groupedPosts = groupPostsByYear(allPosts);
                         .sort((a, b) => b - a)
                         .map((year) => (
                             <div class="flex border-solid pt-8">
-                                <h2 class="text-gray-400 text-sm w-20">{year}</h2>
-                                <ul class="flex-grow">
+                                <h2 class="text-gray-400 text-sm w-20 flex-shrink-0">{year}</h2>
+                                <ul class="flex-grow min-w-0">
                                     {groupedPosts[year].map((post, index) => {
                                         const isFirst = index === 0;
-                                        return <li class={`${isFirst ? 'flex justify-between' : 'flex justify-between pt-8'}`}>
-                                            <a href={post.url}>
+                                        return <li class={`${isFirst ? 'flex justify-between' : 'flex justify-between pt-8'} min-w-0`}>
+                                            <a href={post.url} class="break-words mr-4">
                                                 {post.frontmatter.title}
                                             </a>
-                                            <p class="text-gray-400 text-sm">
+                                            <p class="text-gray-400 text-sm shrink-0">
                                                 {post.frontmatter.category} 
                                                 {post.frontmatter.pubDate.slice(
                                                     5,

@@ -1,0 +1,67 @@
+---
+import Header from "../components/Header.astro";
+import { Icon } from "astro-icon/components";
+import "../styles/global.css";
+
+// category
+const allPosts = await Astro.glob("./posts/*.md");
+const sortedPosts = allPosts.sort((a, b) => {
+	// Extract date from filename (YYYY-MM-DD format)
+	const dateA = a.file.split("/").pop()?.substring(0, 10) || "";
+	const dateB = b.file.split("/").pop()?.substring(0, 10) || "";
+	return dateB.localeCompare(dateA);
+});
+
+const categories = [
+	...new Set(sortedPosts.map((post) => post.frontmatter.category)),
+];
+const postsList = categories.map((category) => {
+	return {
+		category,
+		posts: sortedPosts.filter(
+			(post) => post.frontmatter.category === category,
+		),
+	};
+});
+---
+
+<!doctype html>
+<html>
+	<Header pageTitle="BK's Blog" />
+	<body>
+		<div class="max-w-screen-sm mx-auto min-h-screen">
+			<div class="flex justify-between pt-32 mb-20">
+				<h1 class="text-xl font-bold font-sans">강병규 | BK Kang</h1>
+				<div class="flex gap-4">
+					<a href="https://github.com/KangBK0120">
+						<Icon name="mdi:github" class="text-2xl" />
+					</a>
+					<a href="">
+						<Icon name="mdi:linkedin" class="text-2xl" />
+					</a>
+				</div>
+			</div>
+			<div class="mb-20 font-serif">
+				<p>읽고 배우고 씁니다. 새로운 것을 배우는 것을 좋아합니다.</p>
+				<p>지금은 버즈빌에서 MLOps Engineer로 일하고 있습니다.</p>
+			</div>
+			{
+				postsList.map(({ category, posts }) => (
+					<div class="font-serif flex gap-8 mb-10">
+						<p class="font-bold w-1/2">{category}</p>
+						<ul>
+							{posts.slice(0, 3).map((post) => (
+								<li class="mb-3">
+									<a href={post.url}>
+										{post.frontmatter.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+			<a href={`/posts`} class="font-serif text-gray-400">더 보기</a>
+		</div>
+	</body>
+</html>

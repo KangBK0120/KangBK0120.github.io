@@ -1,0 +1,70 @@
+---
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import { groupPostsByYear } from "../../scripts/posts";
+
+const allPosts = await Astro.glob("../posts/*.md");
+
+const categories = [
+    ...new Set(allPosts.map((post) => post.frontmatter.category).flat()),
+];
+
+export async function getStaticPaths() {
+    const allPosts = await Astro.glob("../posts/*.md");
+
+    return [
+        { params: { category: "생각" }, props: { posts: allPosts } },
+        { params: { category: "개발" }, props: { posts: allPosts } },
+    ];
+}
+
+const { category } = Astro.params;
+const { posts } = Astro.props;
+const filteredPosts = posts.filter(
+    (post) => post.frontmatter.category === Astro.params.category,
+);
+const groupedPosts = groupPostsByYear(filteredPosts);
+---
+
+<!doctype html>
+<html>
+    <Header pageTitle={category} />
+    <body>
+        <div class="max-w-screen-sm mx-auto min-h-screen">
+            <div class="flex justify-between pt-32 mb-20">
+                <h1 class="text-xl font-bold font-sans">{category}</h1>
+                <div class="flex gap-4">
+                    <a class="text-gray-400 font-serif" href="/">About</a>
+                    <a class="text-gray-400 font-serif" href="/posts">Posts</a>
+                </div>
+            </div>
+            <div class="font-serif">
+                {
+                    Object.keys(groupedPosts)
+                        .sort((a, b) => b - a)
+                        .map((year) => (
+                            <div class="flex border-solid pt-8">
+                                <h2 class="text-gray-400 text-sm w-20">{year}</h2>
+                                <ul class="flex-grow">
+                                    {groupedPosts[year].map((post, index) => {
+                                        const isFirst = index === 0;
+                                        return <li class={`${isFirst ? 'flex justify-between' : 'flex justify-between pt-8'}`}>
+                                            <a href={post.url}>
+                                                {post.frontmatter.title}
+                                            </a>
+                                            <p class="text-gray-400 text-sm">
+                                                {post.frontmatter.pubDate.slice(
+                                                    5,
+                                                    10,
+                                                )}
+                                            </p>
+                                        </li>
+                                    })}
+                                </ul>
+                            </div>
+                        ))
+                }
+            </div>
+        </div>
+    </body>
+</html>

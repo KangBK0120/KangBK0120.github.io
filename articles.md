@@ -1,4 +1,0 @@
----
-layout: articles
-title: articles
----

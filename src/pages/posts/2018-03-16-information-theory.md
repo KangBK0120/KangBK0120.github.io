@@ -47,12 +47,14 @@ $$H(P, Q) = H(P) + D_{KL}(P \| Q)$$
 
 딥러닝을 통해 classification 문제를 해결하고자 할 때 마지막에 cross entropy를 통해 loss를 구하고 이를 역전파시키는 방식으로 학습을 시키죠. 이때 이는 결국 모델이 추정하는 분포 $Q$가 실제 데이터의 분포 $P$가 유사하도록 최적화하는 것과 동일하다고 볼 수 있습니다. $H(P)$의 경우, 학습이 진행된다고 해도 바뀌지 않는 값이니까요.
 
-$$\begin{eqnarray}
-H(P, Q) &=& H(P) + D_{KL}(P \| Q) \\
-&=& -\mathbb{E}_{x\sim P} \left[ \log{P(x)} \right] + \mathbb{E}_{x\sim P} \left[ \log{P(x)} - \log{Q(x)} \right] \\
-&=& -\mathbb{E}_{x\sim P} \left[\log{Q(x)}\right] \\
-&=& -\sum{P(x)\log{Q(x)}} \\
-\end{eqnarray}$$
+$$
+\begin{align}
+H(P, Q) &= H(P) + D_{KL}(P \| Q) \\
+&= -\mathbb{E}_{x\sim P} \left[ \log{P(x)} \right] + \mathbb{E}_{x\sim P} \left[ \log{P(x)} - \log{Q(x)} \right] \\
+&= -\mathbb{E}_{x\sim P} \left[\log{Q(x)}\right] \\
+&= -\sum{P(x)\log{Q(x)}}
+\end{align}
+$$
 
 classification의 경우, $P$를 label이라고 볼 수 있겠죠. 옳은 레이블에서만 $P$는 1의 값을 가질겁니다. 우리의 목표는 학습을 통해서 $Q$가 옳은 데이터를 옳다고 분류하기를 원하기에 결국 Cross entropy를 최소화하도록 학습을 시키는 것입니다.
 

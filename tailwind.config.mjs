@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-			  sans: ['Nanum Gothic', 'sans-serif'],
+			  sans: ['Noto Sans KR', 'sans-serif'],
 			  serif: ['Pretendard', 'serif'],
 			  code: ['IBM Plex Mono', 'monospace'],
 			},

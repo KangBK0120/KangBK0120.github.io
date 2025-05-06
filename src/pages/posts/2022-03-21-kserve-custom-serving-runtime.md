@@ -22,7 +22,7 @@ pubDate: 2022-03-21
 
 sklearn.Dockerfile을 열어보자.
 
-```Dockerfile
+```dockerfile
 # 이전
 FROM python:3.7-slim 
 

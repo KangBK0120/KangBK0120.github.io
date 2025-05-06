@@ -19,15 +19,26 @@ const { frontmatter } = Astro.props;
     </div>
     <style>
         article :global(h1) {
-            @apply font-serif text-lg mb-8 font-bold;
+            @apply font-sans text-lg mb-8 font-bold;
         }
 
+        article :global(h2) {
+            @apply font-sans text-lg mb-8 font-bold;
+        }
+
+        article :global(h3) {
+            @apply font-sans mb-8 font-bold;
+        }
+
+        article :global(li) {
+            @apply font-serif list-disc
+        }
         article :global(p) {
-            @apply font-serif mb-20;
+            @apply font-serif mb-10;
         }
 
         article :global(code) {
-            @apply font-code;
+            @apply font-code bg-gray-100; 
         }
 
         :global(.expressive-code) {

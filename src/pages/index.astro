@@ -5,13 +5,20 @@ import "../styles/global.css";
 
 // category
 const allPosts = await Astro.glob("./posts/*.md");
+const sortedPosts = allPosts.sort((a, b) => {
+	// Extract date from filename (YYYY-MM-DD format)
+	const dateA = a.file.split("/").pop()?.substring(0, 10) || "";
+	const dateB = b.file.split("/").pop()?.substring(0, 10) || "";
+	return dateB.localeCompare(dateA);
+});
+
 const categories = [
-	...new Set(allPosts.map((post) => post.frontmatter.category)),
+	...new Set(sortedPosts.map((post) => post.frontmatter.category)),
 ];
 const postsList = categories.map((category) => {
 	return {
 		category,
-		posts: allPosts.filter(
+		posts: sortedPosts.filter(
 			(post) => post.frontmatter.category === category,
 		),
 	};
@@ -41,8 +48,8 @@ const postsList = categories.map((category) => {
 			{
 				postsList.map(({ category, posts }) => (
 					<div class="font-serif flex gap-8 mb-10">
-						<p class="font-bold w-3/4">{category}</p>
-						<ul class="w-1/4 truncate">
+						<p class="font-bold w-1/2">{category}</p>
+						<ul>
 							{posts.slice(0, 3).map((post) => (
 								<li class="mb-3">
 									<a href={post.url}>

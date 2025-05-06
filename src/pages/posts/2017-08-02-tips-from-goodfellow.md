@@ -46,7 +46,7 @@ discriminator의 cost를 ${J^{(D)}}$라고 하고, ${D}$가 사용하는 paramet
 를 최소화하도록 학습을 시킵니다.
 
 이 cost를 계산하는 코드를 텐서플로우(Abadi et al., 2015)를 통해 구현한다면
-```{.python}
+```python
 d_on_data = discriminator_logits(data_minibatch)
 d_on_samples = discriminator_logits(samples_minibatch)
 loss = tf.nn.sigmoid_cross_entropy_with_logits(d_on_data, 1.) + \
@@ -57,7 +57,7 @@ loss = tf.nn.sigmoid_cross_entropy_with_logits(d_on_data, 1.) + \
 
 One-sided label smoothing의 핵심은 실제 데이터에 대한 target 값을 1보다 약간 작은 값, 이를테면 0.9로 해준다는 것입니다. 이를 코드로 나타낸다면 다음과 같을 것입니다.
 
-```{.python}
+```python
 loss = tf.nn.sigmoid_cross_entropy_with_logits(d_on_data, .9) + \
  tf.nn.sigmoid_cross_entropy_with_logits(d_on_samples, 0.)
 ```

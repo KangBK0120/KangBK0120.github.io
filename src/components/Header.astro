@@ -1,16 +1,64 @@
 ---
-const { pageTitle } = Astro.props;
+const { pageTitle, description, ogImage, ogType = 'website' } = Astro.props;
+const siteTitle = 'BK\'s Blog';
+const siteDescription = '읽고 배우고 씁니다. 새로운 것을 배우는 것을 좋아합니다.';
+const siteUrl = 'https://kangbk0120.github.io';
+const currentUrl = new URL(Astro.url.pathname, siteUrl).href;
+const metaDescription = description || siteDescription;
+const metaImage = ogImage ? new URL(ogImage, siteUrl).href : `${siteUrl}/logo.png`;
 ---
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={metaDescription} />
+    <meta name="author" content="강병규 (BK Kang)" />
     <link rel="icon" href="/logo.png" />
-    <title>{pageTitle}</title>
+    <link rel="canonical" href={currentUrl} />
+    <title>{pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle}</title>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={metaImage} />
+    <meta property="og:locale" content="ko_KR" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={currentUrl} />
+    <meta property="twitter:title" content={pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle} />
+    <meta property="twitter:description" content={metaDescription} />
+    <meta property="twitter:image" content={metaImage} />
+    
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
         integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"
         crossorigin="anonymous"
     />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "BK's Blog",
+        "description": "읽고 배우고 씁니다. 새로운 것을 배우는 것을 좋아합니다.",
+        "url": "https://kangbk0120.github.io",
+        "author": {
+            "@type": "Person",
+            "name": "강병규",
+            "alternateName": "BK Kang",
+            "jobTitle": "MLOps Engineer",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "버즈빌"
+            },
+            "sameAs": [
+                "https://github.com/KangBK0120",
+                "https://www.linkedin.com/in/kangbk/"
+            ]
+        },
+        "inLanguage": "ko-KR"
+    })} />
 </head>

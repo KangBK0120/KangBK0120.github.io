@@ -8,11 +8,11 @@ const groupedPosts = groupPostsByYear(allPosts);
 ---
 
 <!doctype html>
-<html>
-    <Header pageTitle="Posts" />
+<html lang="ko">
+    <Header pageTitle="Posts" description="강병규(BK Kang)의 블로그 포스트 목록입니다. 개발, 머신러닝, MLOps 관련 글들을 확인하세요." />
     <body>
-        <div class="max-w-screen-sm mx-auto min-h-screen pb-20">
-            <div class="flex justify-between pt-32 mb-20">
+        <div class="max-w-screen-sm mx-auto min-h-screen pb-20 px-4 sm:px-0">
+            <div class="flex justify-between pt-16 sm:pt-32 mb-12 sm:mb-20">
                 <h1 class="text-xl font-bold font-sans">Posts</h1>
                 <div class="flex gap-4">
                     <a class="text-gray-400 font-serif" href="/">About</a>
@@ -24,16 +24,16 @@ const groupedPosts = groupPostsByYear(allPosts);
                     Object.keys(groupedPosts)
                         .sort((a, b) => b - a)
                         .map((year) => (
-                            <div class="flex border-solid pt-8">
-                                <h2 class="text-gray-400 text-sm w-20 flex-shrink-0">{year}</h2>
+                            <div class="flex flex-col sm:flex-row border-solid pt-6 sm:pt-8">
+                                <h2 class="text-gray-400 text-sm sm:w-20 flex-shrink-0 mb-2 sm:mb-0">{year}</h2>
                                 <ul class="flex-grow min-w-0">
                                     {groupedPosts[year].map((post, index) => {
                                         const isFirst = index === 0;
-                                        return <li class={`${isFirst ? 'flex justify-between' : 'flex justify-between pt-8'} min-w-0`}>
-                                            <a href={post.url} class="break-words mr-4">
+                                        return <li class={`${isFirst ? 'flex flex-col sm:flex-row sm:justify-between' : 'flex flex-col sm:flex-row sm:justify-between pt-6 sm:pt-8'} min-w-0`}>
+                                            <a href={post.url} class="break-words hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200 rounded px-1 -mx-1 mb-1 sm:mb-0 sm:mr-4">
                                                 {post.frontmatter.title}
                                             </a>
-                                            <p class="text-gray-400 text-sm shrink-0">
+                                            <p class="text-gray-400 text-xs sm:text-sm shrink-0 ml-1 sm:ml-0">
                                                 {post.frontmatter.category} 
                                                 {post.frontmatter.pubDate.slice(
                                                     5,

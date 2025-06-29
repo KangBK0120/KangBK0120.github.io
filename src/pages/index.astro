@@ -26,11 +26,11 @@ const postsList = categories.map((category) => {
 ---
 
 <!doctype html>
-<html>
-	<Header pageTitle="BK's Blog" />
+<html lang="ko">
+	<Header pageTitle="BK's Blog" description="읽고 배우고 씁니다. 새로운 것을 배우는 것을 좋아합니다. MLOps Engineer로 일하며 기술 블로그를 운영하고 있습니다." />
 	<body>
-		<div class="max-w-screen-sm mx-auto min-h-screen">
-			<div class="flex justify-between pt-32 mb-20">
+		<div class="max-w-screen-sm mx-auto min-h-screen px-4 sm:px-0">
+			<div class="flex justify-between pt-16 sm:pt-32 mb-12 sm:mb-20">
 				<h1 class="text-xl font-bold font-sans">강병규 | BK Kang</h1>
 				<div class="flex gap-4">
 					<a href="https://github.com/KangBK0120">
@@ -41,18 +41,18 @@ const postsList = categories.map((category) => {
 					</a>
 				</div>
 			</div>
-			<div class="mb-20 font-serif">
+			<div class="mb-12 sm:mb-20 font-serif">
 				<p>읽고 배우고 씁니다. 새로운 것을 배우는 것을 좋아합니다.</p>
 				<p>지금은 버즈빌에서 MLOps Engineer로 일하고 있습니다.</p>
 			</div>
 			{
 				postsList.map(({ category, posts }) => (
-					<div class="font-serif flex gap-8 mb-10">
-						<p class="font-bold w-1/2">{category}</p>
-						<ul>
+					<div class="font-serif flex flex-col sm:flex-row gap-4 sm:gap-8 mb-8 sm:mb-10">
+						<p class="font-bold w-full sm:w-1/2 text-gray-600 mb-2 sm:mb-0">{category}</p>
+						<ul class="w-full">
 							{posts.slice(0, 3).map((post) => (
-								<li class="mb-3">
-									<a href={post.url}>
+								<li class="mb-2 sm:mb-3">
+									<a href={post.url} class="hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200 rounded px-1 -mx-1">
 										{post.frontmatter.title}
 									</a>
 								</li>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://kangbk0120.github.io/sitemap-index.xml
+Sitemap: https://kangbk0120.github.io/sitemap-index.xml

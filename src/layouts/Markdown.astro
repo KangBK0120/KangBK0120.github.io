@@ -6,43 +6,72 @@ const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
-<Header pageTitle={frontmatter.title} />
-<div class="max-w-screen-md mx-auto min-h-screen">
-    <div class="pt-32 mb-20">
-        <div class="flex justify-between mb-1">
-            <h1 class="text-xl font-bold font-sans">{frontmatter.title}</h1>
-            <div class="text-right text-gray-400 font-serif">
+<html lang="ko">
+<Header 
+    pageTitle={frontmatter.title} 
+    description={frontmatter.description}
+    ogType="article"
+/>
+<div class="max-w-screen-md mx-auto min-h-screen px-4 sm:px-0">
+    <div class="pt-16 sm:pt-32 mb-12 sm:mb-20">
+        <div class="flex flex-col sm:flex-row sm:justify-between mb-4 sm:mb-1">
+            <h1 class="text-lg sm:text-xl font-bold font-sans mb-3 sm:mb-0 leading-tight">{frontmatter.title}</h1>
+            <div class="text-left sm:text-right text-gray-400 font-serif text-sm sm:text-base flex-shrink-0">
                 <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
-                <a href={`/category/${frontmatter.category}`}>{frontmatter.category}</a>
+                <a href={`/category/${frontmatter.category}`} class="hover:text-gray-600 transition-colors">{frontmatter.category}</a>
             </div>
         </div>
     </div>
     <style>
         article :global(h1) {
-            @apply font-sans text-lg mb-8 font-bold;
+            @apply font-sans text-base sm:text-lg mb-6 sm:mb-8 font-bold;
         }
 
         article :global(h2) {
-            @apply font-sans text-lg mb-8 font-bold;
+            @apply font-sans text-base sm:text-lg mb-6 sm:mb-8 font-bold;
         }
 
         article :global(h3) {
-            @apply font-sans mb-8 font-bold;
+            @apply font-sans text-sm sm:text-base mb-6 sm:mb-8 font-bold;
+        }
+
+        article :global(ul) {
+            @apply font-serif mb-6 sm:mb-10 pl-6 space-y-2 list-disc;
+        }
+        
+        article :global(ol) {
+            @apply font-serif mb-6 sm:mb-10 pl-6 space-y-2 list-decimal;
         }
 
         article :global(li) {
-            @apply font-serif list-disc
+            @apply font-serif text-sm sm:text-base leading-relaxed;
+        }
+
+        article :global(ul li) {
+            @apply list-disc;
+        }
+
+        article :global(ol li) {
+            @apply list-decimal;
+        }
+
+        /* 중첩된 리스트 지원 */
+        article :global(ul ul),
+        article :global(ol ol),
+        article :global(ul ol),
+        article :global(ol ul) {
+            @apply mt-2 mb-2;
         }
         article :global(p) {
-            @apply font-serif mb-10;
+            @apply font-serif mb-6 sm:mb-10 text-sm sm:text-base leading-relaxed;
         }
 
         article :global(code) {
-            @apply font-code bg-gray-100; 
+            @apply font-code bg-gray-100 text-sm px-1 py-0.5 rounded;
         }
 
         :global(.expressive-code) {
-            @apply mb-20;
+            @apply mb-12 sm:mb-20 text-sm sm:text-base;
         }
     </style>
     <article>
@@ -62,6 +91,35 @@ const { frontmatter } = Astro.props;
         crossorigin="anonymous"
         async>
         </script>
+        
+        <!-- JSON-LD for Blog Post -->
+        <script type="application/ld+json" is:inline set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": frontmatter.title,
+            "description": frontmatter.description || frontmatter.title,
+            "datePublished": frontmatter.pubDate,
+            "dateModified": frontmatter.pubDate,
+            "author": {
+                "@type": "Person",
+                "name": "강병규",
+                "alternateName": "BK Kang"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "BK's Blog",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://kangbk0120.github.io/logo.png"
+                }
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://kangbk0120.github.io${Astro.url.pathname}`
+            },
+            "articleSection": frontmatter.category,
+            "inLanguage": "ko-KR"
+        })} />
     </article>
     
 </div>

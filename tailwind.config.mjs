@@ -5,7 +5,7 @@ export default {
 		extend: {
 			fontFamily: {
 			  sans: ['Noto Sans KR', 'sans-serif'],
-			  serif: ['Pretendard', 'serif'],
+			  serif: ['Pretendard', 'sans-serif'],
 			  code: ['IBM Plex Mono', 'monospace'],
 			},
 		  },

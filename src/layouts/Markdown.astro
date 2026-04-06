@@ -1,125 +1,182 @@
 ---
 import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
 import "../styles/global.css";
 
 const { frontmatter } = Astro.props;
+
+const allPosts = await Astro.glob("../pages/posts/*.md");
+const sortedPosts = allPosts.sort(
+    (a, b) => new Date(a.frontmatter.pubDate).getTime() - new Date(b.frontmatter.pubDate).getTime()
+);
+const currentIndex = sortedPosts.findIndex((p) => p.frontmatter.title === frontmatter.title);
+const prevPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
 ---
 
 <!doctype html>
 <html lang="ko">
-<Header 
-    pageTitle={frontmatter.title} 
+<Header
+    pageTitle={frontmatter.title}
     description={frontmatter.description}
     ogType="article"
+    useKatex={true}
 />
-<div class="max-w-screen-md mx-auto min-h-screen px-4 sm:px-0">
-    <div class="pt-16 sm:pt-32 mb-12 sm:mb-20">
-        <div class="flex flex-col sm:flex-row sm:justify-between mb-4 sm:mb-1">
-            <h1 class="text-lg sm:text-xl font-bold font-sans mb-3 sm:mb-0 leading-tight">{frontmatter.title}</h1>
-            <div class="text-left sm:text-right text-gray-400 font-serif text-sm sm:text-base flex-shrink-0">
-                <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
-                <a href={`/category/${frontmatter.category}`} class="hover:text-gray-600 transition-colors">{frontmatter.category}</a>
+<body>
+    <div class="max-w-screen-sm mx-auto min-h-screen px-4 sm:px-0">
+        <Nav />
+        <main id="main-content">
+            <div class="mb-10 sm:mb-14">
+                <div class="flex flex-col sm:flex-row sm:justify-between mb-2">
+                    <h1 class="text-xl sm:text-2xl font-bold font-sans mb-3 sm:mb-0 leading-tight">{frontmatter.title}</h1>
+                    <div class="text-left sm:text-right text-gray-500 font-serif text-sm flex-shrink-0">
+                        <p>{frontmatter.pubDate.toString().slice(0, 10)}</p>
+                        <a href={`/category/${frontmatter.category}`} class="text-gray-500 hover:text-black transition-colors">{frontmatter.category}</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <style>
-        article :global(h1) {
-            @apply font-sans text-base sm:text-lg mb-6 sm:mb-8 font-bold;
-        }
-
-        article :global(h2) {
-            @apply font-sans text-base sm:text-lg mb-6 sm:mb-8 font-bold;
-        }
-
-        article :global(h3) {
-            @apply font-sans text-sm sm:text-base mb-6 sm:mb-8 font-bold;
-        }
-
-        article :global(ul) {
-            @apply font-serif mb-6 sm:mb-10 pl-6 space-y-2 list-disc;
-        }
-        
-        article :global(ol) {
-            @apply font-serif mb-6 sm:mb-10 pl-6 space-y-2 list-decimal;
-        }
-
-        article :global(li) {
-            @apply font-serif text-sm sm:text-base leading-relaxed;
-        }
-
-        article :global(ul li) {
-            @apply list-disc;
-        }
-
-        article :global(ol li) {
-            @apply list-decimal;
-        }
-
-        /* 중첩된 리스트 지원 */
-        article :global(ul ul),
-        article :global(ol ol),
-        article :global(ul ol),
-        article :global(ol ul) {
-            @apply mt-2 mb-2;
-        }
-        article :global(p) {
-            @apply font-serif mb-6 sm:mb-10 text-sm sm:text-base leading-relaxed;
-        }
-
-        article :global(code) {
-            @apply font-code bg-gray-100 text-sm px-1 py-0.5 rounded;
-        }
-
-        :global(.expressive-code) {
-            @apply mb-12 sm:mb-20 text-sm sm:text-base;
-        }
-    </style>
-    <article>
-        <slot />
-        <script src="https://giscus.app/client.js"
-        data-repo="KangBK0120/KangBK0120.github.io"
-        data-repo-id="MDEwOlJlcG9zaXRvcnk5ODQzNjAxNw=="
-        data-category="Announcements"
-        data-category-id="DIC_kwDOBd4Dsc4Cp0ci"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="noborder_light"
-        data-lang="ko"
-        crossorigin="anonymous"
-        async>
-        </script>
-        
-        <!-- JSON-LD for Blog Post -->
-        <script type="application/ld+json" is:inline set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": frontmatter.title,
-            "description": frontmatter.description || frontmatter.title,
-            "datePublished": frontmatter.pubDate,
-            "dateModified": frontmatter.pubDate,
-            "author": {
-                "@type": "Person",
-                "name": "강병규",
-                "alternateName": "BK Kang"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "BK's Blog",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://kangbk0120.github.io/logo.png"
+            <style>
+                article :global(h1) {
+                    @apply font-sans text-xl sm:text-2xl mt-12 sm:mt-16 mb-4 sm:mb-6 font-bold leading-snug;
                 }
-            },
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": `https://kangbk0120.github.io${Astro.url.pathname}`
-            },
-            "articleSection": frontmatter.category,
-            "inLanguage": "ko-KR"
-        })} />
-    </article>
-    
-</div>
+                article :global(h2) {
+                    @apply font-sans text-lg sm:text-xl mt-10 sm:mt-14 mb-4 sm:mb-6 font-semibold leading-snug;
+                }
+                article :global(h3) {
+                    @apply font-sans text-base sm:text-lg mt-8 sm:mt-10 mb-3 sm:mb-4 font-semibold leading-snug;
+                }
+                article :global(ul) {
+                    @apply font-serif mb-6 sm:mb-8 pl-6 space-y-2 list-disc;
+                }
+                article :global(ol) {
+                    @apply font-serif mb-6 sm:mb-8 pl-6 space-y-2 list-decimal;
+                }
+                article :global(li) {
+                    @apply font-serif text-base leading-relaxed;
+                }
+                article :global(ul li) {
+                    @apply list-disc;
+                }
+                article :global(ol li) {
+                    @apply list-decimal;
+                }
+                article :global(ul ul),
+                article :global(ol ol),
+                article :global(ul ol),
+                article :global(ol ul) {
+                    @apply mt-2 mb-2;
+                }
+                article :global(p) {
+                    @apply font-serif mb-6 sm:mb-8 text-base leading-relaxed;
+                }
+                article :global(a) {
+                    @apply underline decoration-gray-400 underline-offset-4 hover:decoration-gray-900 hover:bg-gray-100 rounded transition-colors break-words;
+                }
+                article :global(code) {
+                    @apply font-code bg-gray-100 text-sm px-1.5 py-0.5 rounded;
+                }
+                :global(.expressive-code) {
+                    @apply mb-6 sm:mb-8;
+                }
+                article :global(img) {
+                    @apply max-w-full h-auto rounded my-6 sm:my-8;
+                }
+                article :global(pre) {
+                    @apply overflow-x-auto;
+                }
+                article :global(blockquote) {
+                    @apply border-l-4 border-gray-200 pl-4 my-6 sm:my-8 text-gray-600 italic;
+                }
+                article :global(hr) {
+                    @apply my-8 sm:my-12 border-gray-200;
+                }
+                article :global(table) {
+                    @apply w-full mb-6 sm:mb-8 text-sm;
+                }
+                article :global(th),
+                article :global(td) {
+                    @apply border border-gray-200 px-3 py-2 text-left;
+                }
+                article :global(th) {
+                    @apply bg-gray-50 font-semibold;
+                }
+            </style>
+            <article>
+                <slot />
+            </article>
+
+            <nav class="flex justify-between items-center mt-16 sm:mt-20 pt-8 border-t border-gray-200 mb-12 font-serif text-sm" aria-label="포스트 내비게이션">
+                {prevPost ? (
+                    <a href={prevPost.url} class="group flex flex-col max-w-[45%] text-gray-500 hover:text-black transition-colors">
+                        <span class="text-xs text-gray-400 mb-1">← 이전 글</span>
+                        <span class="group-hover:underline truncate">{prevPost.frontmatter.title}</span>
+                    </a>
+                ) : <div />}
+                {nextPost ? (
+                    <a href={nextPost.url} class="group flex flex-col items-end max-w-[45%] text-gray-500 hover:text-black transition-colors ml-auto">
+                        <span class="text-xs text-gray-400 mb-1">다음 글 →</span>
+                        <span class="group-hover:underline truncate">{nextPost.frontmatter.title}</span>
+                    </a>
+                ) : <div />}
+            </nav>
+
+            <div class="mb-20" id="giscus-container">
+                <script is:inline>
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                const script = document.createElement('script');
+                                script.src = 'https://giscus.app/client.js';
+                                script.setAttribute('data-repo', 'KangBK0120/KangBK0120.github.io');
+                                script.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnk5ODQzNjAxNw==');
+                                script.setAttribute('data-category', 'Announcements');
+                                script.setAttribute('data-category-id', 'DIC_kwDOBd4Dsc4Cp0ci');
+                                script.setAttribute('data-mapping', 'pathname');
+                                script.setAttribute('data-strict', '0');
+                                script.setAttribute('data-reactions-enabled', '1');
+                                script.setAttribute('data-emit-metadata', '0');
+                                script.setAttribute('data-input-position', 'top');
+                                script.setAttribute('data-theme', 'noborder_light');
+                                script.setAttribute('data-lang', 'ko');
+                                script.crossOrigin = 'anonymous';
+                                script.async = true;
+                                entry.target.appendChild(script);
+                                observer.disconnect();
+                            }
+                        });
+                    }, { rootMargin: '200px' });
+                    observer.observe(document.getElementById('giscus-container'));
+                </script>
+            </div>
+        </main>
+    </div>
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": frontmatter.title,
+        "description": frontmatter.description || frontmatter.title,
+        "datePublished": frontmatter.pubDate,
+        "dateModified": frontmatter.updatedDate || frontmatter.pubDate,
+        "author": {
+            "@type": "Person",
+            "name": "강병규",
+            "alternateName": "BK Kang"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BK's Blog",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://kangbk0120.github.io/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://kangbk0120.github.io${Astro.url.pathname}`
+        },
+        "articleSection": frontmatter.category,
+        "inLanguage": "ko-KR"
+    })} />
+</body>
+</html>

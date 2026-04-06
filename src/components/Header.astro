@@ -1,5 +1,5 @@
 ---
-const { pageTitle, description, ogImage, ogType = 'website' } = Astro.props;
+const { pageTitle, description, ogImage, ogType = 'website', useKatex = false } = Astro.props;
 const siteTitle = 'BK\'s Blog';
 const siteDescription = '읽고 배우고 씁니다. 새로운 것을 배우는 것을 좋아합니다.';
 const siteUrl = 'https://kangbk0120.github.io';
@@ -13,9 +13,20 @@ const metaImage = ogImage ? new URL(ogImage, siteUrl).href : `${siteUrl}/logo.pn
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={metaDescription} />
     <meta name="author" content="강병규 (BK Kang)" />
-    <link rel="icon" href="/logo.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="canonical" href={currentUrl} />
     <title>{pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle}</title>
+
+    <!-- Font preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={currentUrl} />
@@ -23,28 +34,30 @@ const metaImage = ogImage ? new URL(ogImage, siteUrl).href : `${siteUrl}/logo.pn
     <meta property="og:description" content={metaDescription} />
     <meta property="og:image" content={metaImage} />
     <meta property="og:locale" content="ko_KR" />
-    
+
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={currentUrl} />
-    <meta property="twitter:title" content={pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle} />
-    <meta property="twitter:description" content={metaDescription} />
-    <meta property="twitter:image" content={metaImage} />
-    
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
-        integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"
-        crossorigin="anonymous"
-    />
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={currentUrl} />
+    <meta name="twitter:title" content={pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={metaImage} />
+
+    {useKatex && (
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+            integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"
+            crossorigin="anonymous"
+        />
+    )}
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "BK's Blog",
-        "description": "읽고 배우고 씁니다. 새로운 것을 배우는 것을 좋아합니다.",
-        "url": "https://kangbk0120.github.io",
+        "description": siteDescription,
+        "url": siteUrl,
         "author": {
             "@type": "Person",
             "name": "강병규",

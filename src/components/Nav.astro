@@ -1,0 +1,55 @@
+---
+import { Icon } from "astro-icon/components";
+const currentPath = Astro.url.pathname;
+---
+
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded focus:text-sm">
+    본문으로 건너뛰기
+</a>
+<header>
+    <nav class="flex justify-between items-center pt-12 sm:pt-20 mb-10 sm:mb-14" aria-label="메인 내비게이션">
+        <a href="/" class="text-lg font-bold font-sans hover:opacity-70 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded">BK</a>
+        <div class="flex items-center gap-1">
+            <a
+                href="/"
+                class:list={[
+                    "font-serif py-2 px-3 rounded transition-colors text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black",
+                    currentPath === "/" ? "text-black" : "text-gray-400 hover:text-black"
+                ]}
+            >
+                About
+            </a>
+            <a
+                href="/posts"
+                class:list={[
+                    "font-serif py-2 px-3 rounded transition-colors text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black",
+                    currentPath.startsWith("/posts") || currentPath.startsWith("/category")
+                        ? "text-black"
+                        : "text-gray-400 hover:text-black"
+                ]}
+            >
+                Posts
+            </a>
+            <div class="flex items-center gap-1 ml-1 border-l border-gray-200 pl-2">
+                <a
+                    href="https://github.com/KangBK0120"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub 프로필"
+                    class="p-2 text-gray-400 hover:text-black transition-colors rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                >
+                    <Icon name="mdi:github" class="text-lg" />
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/kangbk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn 프로필"
+                    class="p-2 text-gray-400 hover:text-black transition-colors rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                >
+                    <Icon name="mdi:linkedin" class="text-lg" />
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>

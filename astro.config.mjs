@@ -10,7 +10,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   integrations: [tailwind(), icon(), expressiveCode(
     {
-      themes: ['dracula'],
+      themes: ['github-light'],
       styleOverrides: {
         codeFontFamily: 'IBM Plex Mono, monospace',
         codeFontSize: '0.875rem',
